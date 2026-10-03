@@ -10,7 +10,7 @@ export const CONTACT_EMAIL = 'sermountapp@gmail.com';
 
 // A page appears in the header, footer and sitemap only once it is built.
 export const PAGES = [
-  { path: '/how-it-works', label: 'How it works', nav: true, built: false },
+  { path: '/how-it-works', label: 'How it works', nav: true, built: true },
   { path: '/blog', label: 'Blog', nav: true, built: false },
   { path: '/about', label: 'About', nav: true, built: false },
   { path: '/pricing', label: 'Beta', nav: false, built: false },

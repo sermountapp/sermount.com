@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import '../styles/patterns.css';
 import Illustration from '../components/Illustration.astro';
 import SearchIcon from '../components/SearchIcon.astro';
 import { BETA_PATH } from '../config';
@@ -8,7 +9,7 @@ const outputs = ['Blog', 'Newsletter', 'Sermon Brief', 'Small Group', 'Devotiona
 ---
 <Base title="Sermount" description="Sermount is a Smart Sermon Database. Every sermon your church has preached, searchable by what was said, and every output sounds like the speaker.">
 
-  <section class="hero">
+  <section class="hero page-hero">
     <div class="wrap">
       <p class="label">A Smart Sermon Database</p>
       <h1>Every sermon your church has preached, searchable by what was said.</h1>
@@ -131,7 +132,7 @@ const outputs = ['Blog', 'Newsletter', 'Sermon Brief', 'Small Group', 'Devotiona
       <div class="who">
         <div class="who-row"><h3>Pastors</h3><p class="lead">Find what you said, build on it, and stop wondering whether you already used that story in 2022.</p></div>
         <div class="who-row"><h3>Communications and media staff</h3><p class="lead">Start Monday with the newsletter, the small-group guide and the quote cards already drafted, in the voice of whoever preached.</p></div>
-        <div class="who-row"><h3>Admins</h3><p class="lead">Add speakers, invite the team as admins or editors, and keep every sermon in one place the whole staff can search.</p></div>
+        <div class="who-row"><h3>Admins</h3><p class="lead">Add speakers, invite the team as editors, and keep every sermon in one place the whole staff can search.</p></div>
       </div>
     </div>
   </section>
@@ -150,98 +151,32 @@ const outputs = ['Blog', 'Newsletter', 'Sermon Brief', 'Small Group', 'Devotiona
 </Base>
 
 <style>
-  .section { padding-top: var(--section); }
-
-  /* hero */
-  .hero { padding-top: 72px; }
-  .hero h1 { max-width: 19ch; }
-  .hero .lead { margin-top: 28px; }
-  .actions { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; margin-top: 36px; }
   .hero :global(.search-shot) { margin-top: 72px; }
+  .actions { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; margin-top: 36px; }
 
-  /* product frames */
-  .frame {
-    background: var(--card);
-    border: 1px solid var(--rule);
-    border-radius: var(--radius);
-    box-shadow: 0 1px 0 rgba(38, 35, 32, 0.04), 0 24px 48px -24px rgba(38, 35, 32, 0.18);
-    overflow: hidden;
-  }
-  .search { display: flex; align-items: center; gap: 14px; padding: 22px 28px; border-bottom: 1px solid var(--rule); font-size: 19px; color: var(--ink-soft); }
-  .q { color: var(--ink); }
-  .q::after { content: ""; display: inline-block; width: 2px; height: 1.1em; background: var(--gold); vertical-align: -3px; margin-left: 2px; }
-  .results { display: grid; grid-template-columns: 1.6fr 1fr; }
-  .group { padding: 24px 28px 28px; min-width: 0; }
-  .group + .group { border-left: 1px solid var(--rule); }
-  .group-title { font: 500 12px/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 16px; }
-  .hit { padding: 16px 0; border-top: 1px solid var(--rule); }
-  .hit:first-of-type { border-top: 0; padding-top: 0; }
-  .hit p + p { margin-top: 6px; font-size: 16px; }
-  .meta { font: 500 13px/1.5 var(--mono); color: var(--ink-soft); }
-  .tc { color: var(--gold-text); }
-  mark { background: var(--gold-wash); color: inherit; padding: 0 2px; border-radius: 2px; }
-  .sermon-row { padding: 14px 0; border-top: 1px solid var(--rule); }
-  .sermon-row:first-of-type { border-top: 0; padding-top: 0; }
-  .sermon-row strong { display: block; font: 500 16px/1.4 var(--sans); }
-
-  /* pain */
   .pain { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
   .stack { display: grid; gap: 16px; }
 
-  /* split */
-  .split { display: grid; grid-template-columns: 5fr 7fr; gap: 64px; align-items: center; }
-  .copy { display: grid; gap: 20px; }
-  .copy .label, .copy h2 { margin: 0; }
-  .copy h2 { margin-top: -8px; }
-  .transcript { padding: 8px 0; font-size: 16px; }
-  .line { display: grid; grid-template-columns: 64px 1fr; gap: 16px; padding: 10px 24px; }
-  .line .meta { padding-top: 2px; }
-  .line.on { background: var(--gold-wash); box-shadow: inset 3px 0 0 var(--gold); }
-  .tc-on { color: var(--ink); }
-
-  /* voice */
-  .voice { background: var(--night); color: var(--paper); margin-top: var(--section); padding: var(--section) 0; }
-  .voice .label { color: var(--gold-on-night); }
-  .voice .lead { color: var(--night-soft); margin-top: 24px; }
   .voice :global(.letters-wrap) { margin-top: 64px; }
-  .letters { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  .letter { background: var(--card); color: var(--ink); border-radius: var(--radius); padding: 28px 32px 32px; min-width: 0; }
-  .letter p { font: 400 18px/1.6 var(--serif); }
-  .letter p + p { margin-top: 12px; }
-  .letter .letter-meta { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; border-bottom: 1px solid var(--rule); padding-bottom: 14px; margin-bottom: 20px; font: 500 13px/1.5 var(--mono); }
-  .letter .sign { font-style: italic; margin-top: 20px; }
   .outputs { margin-top: 56px; font-size: 18px; line-height: 1.8; color: var(--night-soft); max-width: none; }
   .outputs span { color: var(--paper); }
 
-  /* look back */
   .year { display: grid; grid-template-columns: 72px 1fr; gap: 20px; padding: 18px 28px; border-top: 1px solid var(--rule); }
   .search + .year { border-top: 0; }
   .y { font: 500 15px/1.5 var(--mono); color: var(--gold-text); }
 
-  /* who */
   .who { margin-top: 56px; border-top: 1px solid var(--ink); }
   .who-row { display: grid; grid-template-columns: 280px 1fr; gap: 48px; padding: 28px 0; border-bottom: 1px solid var(--rule); }
   .who-row h3 { font: 400 26px/1.25 var(--serif); }
 
-  /* beta */
   .beta { padding-bottom: var(--section); }
   .beta-box { border-top: 1px solid var(--ink); padding-top: 56px; display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: end; }
   .beta-box .lead { margin-top: 20px; }
 
   @media (max-width: 860px) {
-    .hero { padding-top: 40px; }
     .hero :global(.search-shot) { margin-top: 48px; }
-    .search { padding: 16px 18px; font-size: 16px; }
-    .results { grid-template-columns: 1fr; }
-    .group { padding: 18px; }
-    .group + .group { border-left: 0; border-top: 1px solid var(--rule); }
-    .hide-sm { display: none; }
-    .pain, .split, .letters { grid-template-columns: 1fr; gap: 32px; }
+    .pain { grid-template-columns: 1fr; gap: 32px; }
     .voice :global(.letters-wrap) { margin-top: 40px; }
-    .letters { gap: 16px; }
-    .letter { padding: 22px 20px 24px; }
-    .letter p { font-size: 17px; }
-    .line { grid-template-columns: 52px 1fr; padding: 10px 18px; gap: 12px; }
     .year { grid-template-columns: 52px 1fr; padding: 16px 18px; gap: 12px; }
     .who-row { grid-template-columns: 1fr; gap: 8px; padding: 22px 0; }
     .who-row h3 { font-size: 22px; }
