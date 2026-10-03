@@ -1,0 +1,74 @@
+---
+// Shared layout for Terms and Privacy. Holds placeholder text until counsel supplies the real
+// wording; this site never drafts legal text itself.
+import Base from './Base.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  sections: number;
+}
+const { title, description, sections } = Astro.props;
+const items = Array.from({ length: sections }, (_, i) => ({ id: `section-${i + 1}`, n: i + 1 }));
+---
+<Base title={title} description={description} noindex>
+  <section class="legal">
+    <div class="wrap legal-grid">
+      <nav class="toc" aria-label={`${title} sections`}>
+        <p class="toc-label">Sections</p>
+        <ol>
+          {items.map((s) => <li><a href={`#${s.id}`}>{s.n}. Section title to come</a></li>)}
+        </ol>
+      </nav>
+
+      <article class="doc">
+        <p class="label">Legal</p>
+        <h1>{title}</h1>
+        <p class="updated">Last updated: <span class="ph">date to come</span></p>
+
+        <div class="notice" role="note">
+          <p class="notice-title">Placeholder</p>
+          <p>The {title} for Sermount is being written by our lawyer. This page shows where it will go; none of the text below is the {title.toLowerCase()} itself.</p>
+        </div>
+
+        {items.map((s) => (
+          <section id={s.id} class="part">
+            <h2>{s.n}. <span class="ph">Section title to come</span></h2>
+            <p class="ph-block">Text for this section will be supplied by counsel.</p>
+          </section>
+        ))}
+
+        <slot name="footnote" />
+      </article>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .legal { padding: 72px 0 var(--section); }
+  .legal-grid { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 72px; align-items: start; }
+  .toc { position: sticky; top: 24px; font-size: 14px; }
+  .toc-label { font: 500 12px/1.4 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 10px; }
+  .toc ol { list-style: none; margin: 0; padding: 0; }
+  .toc a { display: block; padding: 9px 0; border-top: 1px solid var(--rule); color: var(--ink-soft); text-decoration: none; }
+  .toc a:hover { color: var(--ink); }
+
+  .doc { max-width: 680px; }
+  .doc h1 { font-size: 52px; }
+  .updated { font: 500 13px/1.5 var(--mono); color: var(--ink-soft); margin-top: 16px; }
+  .ph { background: var(--gold-wash); border-radius: 3px; padding: 0 5px; }
+  .notice { margin: 36px 0 8px; border-left: 2px solid var(--gold); padding: 4px 0 4px 18px; }
+  .notice-title { font: 500 12px/1.4 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold-text); margin-bottom: 6px; }
+  .notice p:last-child { color: var(--ink-soft); }
+  .part { padding-top: 36px; scroll-margin-top: 24px; }
+  .part h2 { font-size: 26px; line-height: 1.3; margin-bottom: 12px; }
+  .ph-block { color: var(--ink-soft); font-style: normal; }
+
+  @media (max-width: 860px) {
+    .legal { padding-top: 40px; }
+    .legal-grid { grid-template-columns: 1fr; gap: 32px; }
+    .toc { position: static; order: 2; display: none; }
+    .doc h1 { font-size: 38px; }
+    .part h2 { font-size: 22px; }
+  }
+</style>

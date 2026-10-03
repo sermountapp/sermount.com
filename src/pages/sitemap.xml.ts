@@ -1,8 +1,8 @@
 import type { APIRoute } from 'astro';
-import { builtPages } from '../config';
+import { indexedPages } from '../config';
 
 export const GET: APIRoute = ({ site }) => {
-  const paths = ['/', ...builtPages.map((p) => p.path)];
+  const paths = ['/', ...indexedPages.map((p) => p.path)];
   const urls = paths
     .map((p) => `  <url><loc>${new URL(p, site).href.replace(/\/$/, p === '/' ? '/' : '')}</loc></url>`)
     .join('\n');

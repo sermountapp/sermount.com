@@ -21,10 +21,12 @@ export const PAGES = [
   { path: '/about', label: 'About', nav: true, built: false },
   { path: '/pricing', label: 'Beta', nav: false, built: true },
   { path: '/contact', label: 'Contact', nav: false, built: true },
-  { path: '/terms', label: 'Terms', nav: false, built: false },
-  { path: '/privacy', label: 'Privacy', nav: false, built: false },
+  { path: '/terms', label: 'Terms', nav: false, built: true, index: false },
+  { path: '/privacy', label: 'Privacy', nav: false, built: true, index: false },
 ] as const;
 
 export const BETA_PATH = '/pricing';
 export const builtPages = PAGES.filter((p) => p.built);
+// Placeholder pages are built but kept out of search until their real text exists.
+export const indexedPages = builtPages.filter((p) => !('index' in p) || p.index !== false);
 export const betaBuilt = PAGES.some((p) => p.path === BETA_PATH && p.built);
