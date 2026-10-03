@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Thank you" description="Your message reached Sermount." noindex>
+  <section class="thanks">
+    <div class="wrap">
+      <p class="label">Sent</p>
+      <h1>Thank you. It's with us.</h1>
+      <p class="lead">A person reads every message and will write back to the email you gave.</p>
+      <p class="back"><a class="link" href="/how-it-works">While you wait, see how Sermount works</a></p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .thanks { padding: 72px 0 var(--section); }
+  h1 { max-width: 16ch; }
+  .lead { margin-top: 24px; }
+  .back { margin-top: 36px; }
+</style>

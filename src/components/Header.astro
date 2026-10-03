@@ -1,6 +1,8 @@
 ---
 import { PAGES, SHOW_SIGN_IN, SIGN_IN_URL, BETA_PATH, betaBuilt } from '../config';
 const nav = PAGES.filter((p) => p.nav && p.built);
+const here = Astro.url.pathname.replace(/\.html$/, '');
+const showBeta = betaBuilt && here !== BETA_PATH && here !== '/thanks';
 ---
 <header class="site-header">
   <div class="wrap">
@@ -8,7 +10,7 @@ const nav = PAGES.filter((p) => p.nav && p.built);
     <nav aria-label="Main">
       {nav.map((p) => <a class="nav-link" href={p.path}>{p.label}</a>)}
       {SHOW_SIGN_IN && <a class="nav-link" href={SIGN_IN_URL} rel="nofollow">Sign in</a>}
-      {betaBuilt && <a class="btn btn-sm" href={BETA_PATH}>Join the beta</a>}
+      {showBeta && <a class="btn btn-sm" href={BETA_PATH}>Join the beta</a>}
     </nav>
   </div>
 </header>

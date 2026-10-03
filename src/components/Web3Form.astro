@@ -1,0 +1,43 @@
+---
+// A plain HTML form that posts to Web3Forms. No script: it submits and redirects without JavaScript.
+// The botcheck checkbox is the honeypot; people never see it, bots tick it, Web3Forms drops those.
+import { WEB3FORMS_ENDPOINT, WEB3FORMS_ACCESS_KEY, SITE_URL } from '../config';
+
+interface Props {
+  subject: string;
+  fromName: string;
+  redirectPath: string;
+  submitLabel: string;
+}
+const { subject, fromName, redirectPath, submitLabel } = Astro.props;
+---
+<form class="w3f" action={WEB3FORMS_ENDPOINT} method="POST" accept-charset="UTF-8">
+  <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+  <input type="hidden" name="subject" value={subject} />
+  <input type="hidden" name="from_name" value={fromName} />
+  <input type="hidden" name="redirect" value={new URL(redirectPath, SITE_URL).href} />
+  <input type="checkbox" name="botcheck" class="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" />
+  <slot />
+  <button class="btn" type="submit">{submitLabel}</button>
+</form>
+
+<style>
+  .w3f { display: grid; gap: 22px; }
+  .botcheck { display: none; }
+  button { border: 0; cursor: pointer; justify-self: start; }
+  .w3f :global(.field) { display: grid; gap: 8px; border: 0; padding: 0; margin: 0; min-width: 0; }
+  .w3f :global(.field > label), .w3f :global(legend) { font: 500 15px/1.4 var(--sans); padding: 0; }
+  .w3f :global(.hint) { font-size: 14px; color: var(--ink-soft); font-weight: 400; }
+  .w3f :global(input[type='text']), .w3f :global(input[type='email']), .w3f :global(textarea) {
+    font: 400 16px/1.4 var(--sans); color: var(--ink); background: var(--card);
+    border: 1px solid var(--control); border-radius: var(--radius); padding: 12px 14px; width: 100%;
+  }
+  .w3f :global(input:focus), .w3f :global(textarea:focus) { border-color: var(--gold-text); outline: 2px solid var(--gold-wash); outline-offset: 0; }
+  .w3f :global(textarea) { min-height: 120px; resize: vertical; }
+  .w3f :global(.choices) { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2px; }
+  .w3f :global(.choice) { position: relative; }
+  .w3f :global(.choice input) { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+  .w3f :global(.choice span) { display: block; border: 1px solid var(--control); background: var(--card); border-radius: var(--radius); padding: 9px 14px; font-size: 15px; }
+  .w3f :global(.choice input:checked + span) { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); background: var(--gold-wash); }
+  .w3f :global(.choice input:focus-visible + span) { outline: 2px solid var(--gold-text); outline-offset: 2px; }
+</style>
