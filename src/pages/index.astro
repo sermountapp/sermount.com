@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Sermount" description="Sermount is a Smart Sermon Database. Every sermon your church has preached, searchable by what was said.">
+  <section class="shell">
+    <div class="wrap">
+      <p class="label">A Smart Sermon Database</p>
+      <h1>Every sermon your church has preached, searchable by what was said.</h1>
+      <p class="lead">Sermount is in beta with a small group of churches. The full site is on its way.</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .shell { padding: 72px 0 var(--section); }
+  h1 { max-width: 19ch; }
+  .lead { margin-top: 28px; }
+  @media (max-width: 860px) { .shell { padding-top: 40px; } }
+</style>

@@ -1,0 +1,144 @@
+/* Sermount brand tokens (docs/brand-guide.md, section 2) and base styles. */
+
+@font-face {
+  font-family: 'Newsreader';
+  src: url('/fonts/newsreader-latin-opsz-normal.woff2') format('woff2');
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Newsreader';
+  src: url('/fonts/newsreader-latin-opsz-italic.woff2') format('woff2');
+  font-weight: 200 800;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  src: url('/fonts/ibm-plex-sans-latin-400-normal.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  src: url('/fonts/ibm-plex-sans-latin-500-normal.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  src: url('/fonts/ibm-plex-sans-latin-600-normal.woff2') format('woff2');
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url('/fonts/ibm-plex-mono-latin-500-normal.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+
+:root {
+  --paper: #F6F3EC;
+  --paper-deep: #EFEAE0;
+  --card: #FFFFFF;
+  --ink: #262320;
+  --ink-soft: #6B6355;
+  --rule: #E3DCCB;
+  --night: #2B2823;
+  --gold: #B8842E;
+  --gold-text: #8A6119;
+  --gold-wash: #F4E6C7;
+  --gold-on-night: #D9A54A;
+  --night-soft: #CFC7B8;
+
+  --serif: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
+
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 24px;
+  --space-6: 32px; --space-7: 48px; --space-8: 64px; --space-9: 96px; --space-10: 128px;
+
+  --radius: 6px;
+  --content: 1120px;
+  --measure: 64ch;
+  --gutter: 48px;
+  --section: 128px;
+  color-scheme: light;
+}
+
+@media (max-width: 860px) {
+  :root { --gutter: 20px; --section: 72px; }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 17px/1.6 var(--sans);
+  text-rendering: optimizeLegibility;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+main { flex: 1 0 auto; }
+@media (max-width: 860px) { body { font-size: 16px; } }
+
+img, svg { max-width: 100%; }
+a { color: inherit; }
+p { margin: 0; max-width: var(--measure); }
+
+h1, h2, h3 { margin: 0; text-wrap: balance; }
+h1, h2 { font-family: var(--serif); font-weight: 400; letter-spacing: -0.01em; }
+h1 { font-size: 64px; line-height: 1.05; }
+h2 { font-size: 40px; line-height: 1.15; }
+h3 { font: 600 20px/1.3 var(--sans); }
+@media (max-width: 860px) {
+  h1 { font-size: 40px; line-height: 1.08; }
+  h2 { font-size: 30px; }
+}
+
+.wrap { max-width: var(--content); margin: 0 auto; padding-inline: var(--gutter); }
+.label {
+  font: 500 13px/1.4 var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold-text);
+  margin: 0 0 20px;
+}
+.lead { font-size: 20px; line-height: 1.55; color: var(--ink-soft); max-width: 52ch; }
+@media (max-width: 860px) { .lead { font-size: 18px; } }
+
+.btn {
+  display: inline-block;
+  background: var(--night);
+  color: var(--paper);
+  text-decoration: none;
+  font: 500 16px/1 var(--sans);
+  padding: 16px 22px;
+  border-radius: var(--radius);
+}
+.btn:hover { background: #17140F; }
+.link {
+  font: 500 16px/1 var(--sans);
+  text-decoration: none;
+  color: var(--ink);
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 3px;
+}
+.link:hover { color: var(--gold-text); }
+
+:focus-visible { outline: 2px solid var(--gold-text); outline-offset: 3px; border-radius: 2px; }
+
+.skip {
+  position: absolute; left: var(--space-4); top: -100px;
+  background: var(--night); color: var(--paper); padding: 10px 14px; border-radius: var(--radius); z-index: 10;
+}
+.skip:focus { top: var(--space-4); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
