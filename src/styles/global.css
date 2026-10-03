@@ -1,16 +1,18 @@
-/* Sermount brand tokens (docs/brand-guide.md, section 2) and base styles. */
+/* Sermount brand tokens (docs/brand-guide.md, section 2) and base styles.
+   Newsreader is cut to weight 400 with the full optical-size axis and a Latin subset
+   (public/fonts/README.txt). The site uses no other Newsreader weight. */
 
 @font-face {
   font-family: 'Newsreader';
-  src: url('/fonts/newsreader-latin-opsz-normal.woff2') format('woff2');
-  font-weight: 200 800;
+  src: url('/fonts/newsreader-400-opsz-normal.woff2') format('woff2');
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Newsreader';
-  src: url('/fonts/newsreader-latin-opsz-italic.woff2') format('woff2');
-  font-weight: 200 800;
+  src: url('/fonts/newsreader-400-opsz-italic.woff2') format('woff2');
+  font-weight: 400;
   font-style: italic;
   font-display: swap;
 }

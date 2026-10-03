@@ -4,5 +4,5 @@ export default defineConfig({
   site: 'https://sermount.com',
   output: 'static',
   trailingSlash: 'never',
-  build: { format: 'file' },
+  build: { format: 'file', inlineStylesheets: 'always' },
 });
