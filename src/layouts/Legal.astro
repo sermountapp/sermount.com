@@ -1,6 +1,6 @@
 ---
-// Shared layout for Terms and Privacy. Holds placeholder text until counsel supplies the real
-// wording; this site never drafts legal text itself.
+// Shared layout for Terms and Privacy. Holds placeholder text until the reviewed wording is
+// ready; this site never drafts legal text itself.
 import Base from './Base.astro';
 
 interface Props {
@@ -28,13 +28,13 @@ const items = Array.from({ length: sections }, (_, i) => ({ id: `section-${i + 1
 
         <div class="notice" role="note">
           <p class="notice-title">Placeholder</p>
-          <p>The {title} for Sermount is being written by our lawyer. This page shows where it will go; none of the text below is the {title.toLowerCase()} itself.</p>
+          <p>The {title} for Sermount is being prepared and will be reviewed by a lawyer before it is published here. This page shows where it will go; none of the text below is the {title} itself.</p>
         </div>
 
         {items.map((s) => (
           <section id={s.id} class="part">
             <h2>{s.n}. <span class="ph">Section title to come</span></h2>
-            <p class="ph-block">Text for this section will be supplied by counsel.</p>
+            <p class="ph-block">Text for this section will appear here once reviewed.</p>
           </section>
         ))}
 
