@@ -1,0 +1,50 @@
+---
+import Base from '../layouts/Base.astro';
+import Web3Form from '../components/Web3Form.astro';
+import '../styles/patterns.css';
+import { CONTACT_EMAIL, BETA_PATH } from '../config';
+---
+<Base title="Contact" description="Write to Sermount. A person reads every message.">
+  <section class="page-hero contact-page">
+    <div class="wrap contact-grid">
+      <div class="copy">
+        <p class="label">Contact</p>
+        <h1>Write to us.</h1>
+        <p class="lead">A person reads every message. If you'd like to join the beta, the <a class="inline" href={BETA_PATH}>beta page</a> is quicker.</p>
+        <div class="direct">
+          <p class="meta-label">Or email</p>
+          <p class="address"><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></p>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <Web3Form subject="Message from sermount.com" fromName="sermount.com contact page" redirectPath="/thanks" submitLabel="Send">
+          <div class="field"><label for="c-name">Your name</label><input id="c-name" name="name" type="text" autocomplete="name" required /></div>
+          <div class="field"><label for="c-email">Email</label><input id="c-email" name="email" type="email" autocomplete="email" required /></div>
+          <div class="field"><label for="c-church">Church <span class="hint">Optional</span></label><input id="c-church" name="church" type="text" autocomplete="organization" /></div>
+          <div class="field"><label for="c-message">Message</label><textarea id="c-message" name="message" required></textarea></div>
+        </Web3Form>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .contact-page { padding-bottom: var(--section); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .contact-grid h1 { font-size: 52px; }
+  .copy .lead { margin-top: 4px; }
+  .inline { color: var(--gold-text); text-decoration-color: var(--gold); text-underline-offset: 3px; }
+  .direct { margin-top: 24px; border-top: 1px solid var(--rule); padding-top: 24px; }
+  .meta-label { font: 500 12px/1.4 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 8px; }
+  .address { font: 500 17px/1.4 var(--mono); overflow-wrap: anywhere; user-select: all; }
+  .address a { color: var(--ink); text-decoration-color: var(--gold); text-underline-offset: 4px; }
+  .form-card { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); padding: 36px; min-width: 0; }
+  .form-card :global(textarea) { min-height: 180px; }
+  @media (max-width: 860px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .contact-grid h1 { font-size: 38px; }
+    .form-card { padding: 22px 18px; }
+    .address { font-size: 15px; }
+  }
+</style>

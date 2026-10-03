@@ -20,7 +20,7 @@ export const PAGES = [
   { path: '/blog', label: 'Blog', nav: true, built: false },
   { path: '/about', label: 'About', nav: true, built: false },
   { path: '/pricing', label: 'Beta', nav: false, built: true },
-  { path: '/contact', label: 'Contact', nav: false, built: false },
+  { path: '/contact', label: 'Contact', nav: false, built: true },
   { path: '/terms', label: 'Terms', nav: false, built: false },
   { path: '/privacy', label: 'Privacy', nav: false, built: false },
 ] as const;
