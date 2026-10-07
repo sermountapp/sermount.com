@@ -11,7 +11,7 @@ export const CONTACT_EMAIL = 'sermountapp@gmail.com';
 // Web3Forms. The access key is public by design: it only tells Web3Forms which inbox to email.
 // Create it at web3forms.com with the contact address above and paste it here.
 export const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
-export const WEB3FORMS_ACCESS_KEY = 'ADD-WEB3FORMS-ACCESS-KEY';
+export const WEB3FORMS_ACCESS_KEY = 'a4f8b89b-646a-4d63-94e8-115fc1ced8f6';
 export const SITE_URL = 'https://sermount.com';
 
 // A page appears in the header, footer and sitemap only once it is built.
