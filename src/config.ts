@@ -5,7 +5,6 @@
 export const SHOW_SIGN_IN = process.env.SHOW_SIGN_IN === 'true';
 export const SIGN_IN_URL = 'https://app.sermount.com/login';
 
-export const PLAUSIBLE_DOMAIN = 'sermount.com';
 export const CONTACT_EMAIL = 'sermountapp@gmail.com';
 
 // Web3Forms. The access key is public by design: it only tells Web3Forms which inbox to email.
