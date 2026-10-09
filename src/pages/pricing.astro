@@ -1,0 +1,72 @@
+---
+import Base from '../layouts/Base.astro';
+import Web3Form from '../components/Web3Form.astro';
+import '../styles/patterns.css';
+
+const roles = ['Pastor', 'Communications or media', 'Admin', 'Other'];
+const sources = ['YouTube', 'Website or podcast', 'Files on a server', 'Not recorded yet'];
+---
+<Base title="Join the beta" description="Sermount is in beta with a small group of churches. Tell us about yours and we'll be in touch.">
+  <section class="page-hero beta-page">
+    <div class="wrap beta-grid">
+      <div class="copy">
+        <p class="label">Beta</p>
+        <h1>Sermount is in beta with a small group of churches.</h1>
+        <p class="lead">We're adding churches a few at a time, so each one gets set up properly and we hear what's missing.</p>
+        <p>Pricing will be published before the beta ends. Churches in the beta will hear about it first, and before anything changes for them.</p>
+
+        <div class="next">
+          <h2>What happens next</h2>
+          <ol>
+            <li><span class="n">1</span><p>You tell us about your church.</p></li>
+            <li><span class="n">2</span><p>A person reads it and writes back to the email you give.</p></li>
+            <li><span class="n">3</span><p>If there's a place in the beta, we set up your church's account and email you an invite to sign in.</p></li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <Web3Form subject="Beta interest from sermount.com" fromName="sermount.com beta page" redirectPath="/thanks" submitLabel="Send">
+          <div class="field"><label for="b-name">Your name</label><input id="b-name" name="name" type="text" autocomplete="name" required /></div>
+          <div class="field"><label for="b-email">Email</label><input id="b-email" name="email" type="email" autocomplete="email" required /></div>
+          <div class="field"><label for="b-church">Church name</label><input id="b-church" name="church" type="text" autocomplete="organization" required /></div>
+          <fieldset class="field">
+            <legend>Your role</legend>
+            <div class="choices">
+              {roles.map((r, i) => (
+                <label class="choice"><input type="radio" name="role" value={r} required={i === 0} /><span>{r}</span></label>
+              ))}
+            </div>
+          </fieldset>
+          <fieldset class="field">
+            <legend>Where do your sermons live now? <span class="hint">Choose any</span></legend>
+            <div class="choices">
+              {sources.map((s) => (
+                <label class="choice"><input type="checkbox" name="sermons_live" value={s} /><span>{s}</span></label>
+              ))}
+            </div>
+          </fieldset>
+          <div class="field"><label for="b-note">Anything we should know? <span class="hint">Optional</span></label><textarea id="b-note" name="message"></textarea></div>
+        </Web3Form>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .beta-page { padding-bottom: var(--section); }
+  .beta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .beta-grid h1 { font-size: 52px; max-width: 16ch; }
+  .copy .lead { margin-top: 4px; }
+  .next { margin-top: 24px; border-top: 1px solid var(--rule); padding-top: 28px; }
+  .next h2 { font: 600 20px/1.3 var(--sans); margin: 0 0 16px; }
+  .next ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+  .next li { display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: baseline; }
+  .n { font: 500 14px/1 var(--mono); color: var(--gold-text); }
+  .form-card { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); padding: 36px; min-width: 0; }
+  @media (max-width: 860px) {
+    .beta-grid { grid-template-columns: 1fr; gap: 48px; }
+    .beta-grid h1 { font-size: 38px; }
+    .form-card { padding: 22px 18px; }
+  }
+</style>

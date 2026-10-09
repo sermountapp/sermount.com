@@ -1,0 +1,186 @@
+---
+import Base from '../layouts/Base.astro';
+import '../styles/patterns.css';
+import Illustration from '../components/Illustration.astro';
+import SearchIcon from '../components/SearchIcon.astro';
+import { BETA_PATH } from '../config';
+
+const outputs = ['Blog', 'Newsletter', 'Sermon Brief', 'Small Group', 'Devotionals', 'Reels', 'Quotes', 'Carousels'];
+---
+<Base title="Sermount" description="Sermount is a Smart Sermon Database. Every sermon your church has preached, searchable by what was said, and every output sounds like the speaker.">
+
+  <section class="hero page-hero">
+    <div class="wrap">
+      <p class="label">A Smart Sermon Database</p>
+      <h1>Every sermon your church has preached, searchable by what was said.</h1>
+      <p class="lead">Upload a sermon or paste a YouTube link. Sermount writes the transcript, and from then on every line of it can be found, by your pastor, your staff, and whoever is writing Thursday's newsletter.</p>
+      <div class="actions">
+        <a class="btn" href={BETA_PATH}>Join the beta</a>
+        <a class="link" href="/how-it-works">See how it works</a>
+      </div>
+
+      <!-- TODO demo-org screenshot: dashboard search results -->
+      <Illustration class="search-shot" caption="A search across a demo church's archive. Sermon titles, speakers and words are invented.">
+        <div class="frame">
+          <div class="search"><SearchIcon /><span class="q">what have we said about grief</span></div>
+          <div class="results">
+            <div class="group">
+              <p class="group-title">Transcript hits</p>
+              <div class="hit">
+                <p class="meta"><span class="tc">24:18</span> · Pastor Dan Okafor · 9 Mar 2025</p>
+                <p>...some of you are in it right now. <mark>Grief is not a detour from faith.</mark> It is one of the roads faith walks on.</p>
+              </div>
+              <div class="hit">
+                <p class="meta"><span class="tc">31:02</span> · Rev. Lena Marsh, guest · 17 Nov 2024</p>
+                <p>Jesus knew Lazarus would walk out of that tomb, <mark>and he wept anyway.</mark> Don't let anyone hurry your tears.</p>
+              </div>
+              <div class="hit hide-sm">
+                <p class="meta"><span class="tc">08:44</span> · Pastor Dan Okafor · 2 Feb 2022</p>
+                <p>When my father died I stopped praying for a while. <mark>I want to tell you what brought me back.</mark></p>
+              </div>
+            </div>
+            <div class="group">
+              <p class="group-title">Sermons</p>
+              <div class="sermon-row"><strong>The Road Through the Valley</strong><span class="meta">Psalm 23 · Pastor Dan Okafor · 2025</span></div>
+              <div class="sermon-row"><strong>Jesus Wept</strong><span class="meta">John 11 · Rev. Lena Marsh · 2024</span></div>
+              <div class="sermon-row hide-sm"><strong>When God Is Quiet</strong><span class="meta">Lamentations 3 · Pastor Dan Okafor · 2022</span></div>
+            </div>
+          </div>
+        </div>
+      </Illustration>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap pain">
+      <h2>The sermons are all there. Nobody can ask them anything.</h2>
+      <div class="stack">
+        <p class="lead">Most churches keep years of preaching on YouTube or on a server in the office. You can scroll it. You can search the titles.</p>
+        <p class="lead">You can't search what was actually said. So the sermon from March about grief stays lost, unless someone remembers the date.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap split">
+      <div class="copy">
+        <p class="label">Find the line</p>
+        <h2>Click a result. The transcript opens at that sentence.</h2>
+        <p>Every result shows the words themselves and the moment they were said. Copy the excerpt for a staff email, or keep reading around it.</p>
+        <p>If the transcript got a word wrong, fix the line. Download the whole thing as SRT or TXT when you need captions.</p>
+      </div>
+      <!-- TODO demo-org screenshot: transcript opened at a search result -->
+      <Illustration>
+        <div class="frame transcript">
+          <div class="line"><span class="meta">23:51</span><span>Mary says it first, and then Martha says it. "Lord, if you had been here."</span></div>
+          <div class="line"><span class="meta">24:05</span><span>That's not doubt. That's what grief sounds like when it still believes.</span></div>
+          <div class="line on"><span class="meta tc-on">24:18</span><span>Grief is not a detour from faith. It is one of the roads faith walks on.</span></div>
+          <div class="line"><span class="meta">24:40</span><span>So if you're carrying something this morning, you don't have to put it down to come in.</span></div>
+        </div>
+      </Illustration>
+    </div>
+  </section>
+
+  <section class="voice">
+    <div class="wrap">
+      <p class="label">Speaker Intelligence</p>
+      <h2>Every output sounds like the speaker.</h2>
+      <p class="lead">Turn any sermon into the week's writing. When a guest preaches, the newsletter sounds like the guest. When your pastor preaches, it sounds like your pastor.</p>
+      <!-- TODO demo-org screenshot: two newsletters, two speakers -->
+      <Illustration tone="night" class="letters-wrap">
+        <div class="letters">
+          <article class="letter">
+            <p class="meta letter-meta"><span>Newsletter</span><span>Pastor Dan Okafor</span></p>
+            <p>Church family,</p>
+            <p>On Sunday we sat with Mary and Martha outside a tomb. I said something I've needed to hear myself: grief is not a detour from faith. If this has been a heavy season, you're not behind. You're on the road.</p>
+            <p class="sign">See you Sunday. Pastor Dan</p>
+          </article>
+          <article class="letter">
+            <p class="meta letter-meta"><span>Newsletter</span><span>Rev. Lena Marsh, guest</span></p>
+            <p>Friends,</p>
+            <p>Jesus knew how the story would end, and he wept anyway. I wonder who taught us that faith means hurrying past the hard part. This week, let yourself be slow. Let someone sit with you.</p>
+            <p class="sign">With you in it, Lena</p>
+          </article>
+        </div>
+      </Illustration>
+      <p class="outputs">From each sermon: {outputs.map((o) => <><span>{o}</span>, </>)}and <span>Anchor Moments</span>.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap split">
+      <div class="copy">
+        <p class="label">Look back, then plan</p>
+        <h2>Start the next series with the last one in view.</h2>
+        <p>Before you preach through Philippians, search what was said about it the last time, and by whom. The archive grows every Sunday, so the answer gets better every year you use it.</p>
+      </div>
+      <!-- TODO demo-org screenshot: search results across several years -->
+      <Illustration>
+        <div class="frame">
+          <div class="search"><SearchIcon /><span class="q">Philippians 4 contentment</span></div>
+          <div class="year"><span class="y">2025</span><span>"Contentment isn't the absence of wanting. It's knowing who holds what you want." <span class="meta">Pastor Dan Okafor</span></span></div>
+          <div class="year"><span class="y">2023</span><span>"Paul wrote this from prison. He is not talking about a nice kitchen." <span class="meta">Pastor Dan Okafor</span></span></div>
+          <div class="year"><span class="y">2021</span><span>"I have learned, he says. Learned. Which means he wasn't always." <span class="meta">Josh Avery, youth pastor</span></span></div>
+        </div>
+      </Illustration>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>For the people who keep a church's teaching.</h2>
+      <div class="who">
+        <div class="who-row"><h3>Pastors</h3><p class="lead">Find what you said, build on it, and stop wondering whether you already used that story in 2022.</p></div>
+        <div class="who-row"><h3>Communications and media staff</h3><p class="lead">Start Monday with the newsletter, the small-group guide and the quote cards already drafted, in the voice of whoever preached.</p></div>
+        <div class="who-row"><h3>Admins</h3><p class="lead">Add speakers, invite the team as editors, and keep every sermon in one place the whole staff can search.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section beta">
+    <div class="wrap">
+      <div class="beta-box">
+        <div>
+          <h2>Sermount is in beta with a small group of churches.</h2>
+          <p class="lead">Tell us about yours and we'll be in touch about a place.</p>
+        </div>
+        <a class="btn" href={BETA_PATH}>Join the beta</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero :global(.search-shot) { margin-top: 72px; }
+  .actions { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; margin-top: 36px; }
+
+  .pain { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  .stack { display: grid; gap: 16px; }
+
+  .voice :global(.letters-wrap) { margin-top: 64px; }
+  .outputs { margin-top: 56px; font-size: 18px; line-height: 1.8; color: var(--night-soft); max-width: none; }
+  .outputs span { color: var(--paper); }
+
+  .year { display: grid; grid-template-columns: 72px 1fr; gap: 20px; padding: 18px 28px; border-top: 1px solid var(--rule); }
+  .search + .year { border-top: 0; }
+  .y { font: 500 15px/1.5 var(--mono); color: var(--gold-text); }
+
+  .who { margin-top: 56px; border-top: 1px solid var(--ink); }
+  .who-row { display: grid; grid-template-columns: 280px 1fr; gap: 48px; padding: 28px 0; border-bottom: 1px solid var(--rule); }
+  .who-row h3 { font: 400 26px/1.25 var(--serif); }
+
+  .beta { padding-bottom: var(--section); }
+  .beta-box { border-top: 1px solid var(--ink); padding-top: 56px; display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: end; }
+  .beta-box .lead { margin-top: 20px; }
+
+  @media (max-width: 860px) {
+    .hero :global(.search-shot) { margin-top: 48px; }
+    .pain { grid-template-columns: 1fr; gap: 32px; }
+    .voice :global(.letters-wrap) { margin-top: 40px; }
+    .year { grid-template-columns: 52px 1fr; padding: 16px 18px; gap: 12px; }
+    .who-row { grid-template-columns: 1fr; gap: 8px; padding: 22px 0; }
+    .who-row h3 { font-size: 22px; }
+    .beta-box { grid-template-columns: 1fr; gap: 28px; padding-top: 40px; }
+    .outputs { font-size: 16px; margin-top: 40px; }
+  }
+</style>

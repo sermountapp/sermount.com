@@ -1,0 +1,15 @@
+---
+import Legal from '../layouts/Legal.astro';
+---
+<Legal title="Privacy Policy" description="Sermount's Privacy Policy. Placeholder until the final text is published." sections={4}>
+  <div slot="footnote" class="site-note">
+    <p class="note-title">About this website</p>
+    <p>Messages sent through the forms on this site are delivered by Web3Forms and emailed to us. We use them only to reply and to set up beta accounts. Web3Forms keeps a copy under its own terms.</p>
+    <p>sermount.com sets no cookies and runs no analytics.</p>
+  </div>
+</Legal>
+
+<style>
+  .site-note { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--rule); font-size: 15px; color: var(--ink-soft); display: grid; gap: 10px; }
+  .note-title { font: 500 12px/1.4 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); }
+</style>

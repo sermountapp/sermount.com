@@ -1,0 +1,29 @@
+---
+// Wraps a drawn product frame. Every frame on the site is labelled "Illustration" until real
+// production screenshots from a demo church replace it.
+interface Props {
+  caption?: string;
+  tone?: 'paper' | 'night';
+  class?: string;
+}
+const { caption, tone = 'paper', class: className } = Astro.props;
+---
+<figure class:list={['illus', `illus-${tone}`, className]}>
+  <span class="illus-label">Illustration</span>
+  <slot />
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<style>
+  .illus { margin: 0; min-width: 0; }
+  .illus-label {
+    display: block;
+    font: 500 11px/1 var(--mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+  .illus-night .illus-label { color: var(--night-soft); }
+  figcaption { font-size: 14px; line-height: 1.5; color: var(--ink-soft); margin-top: 16px; }
+</style>
