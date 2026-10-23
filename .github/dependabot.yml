@@ -1,0 +1,25 @@
+# Weekly dependency PRs (sermount-web docs/security-hygiene-brief.md Part 4).
+# Minor and patch updates arrive grouped, one PR per ecosystem; majors come one
+# by one. Dependabot *alerts* are a repository setting, switched on separately.
+# A merge to main deploys the site.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    groups:
+      npm-minor-and-patch:
+        update-types: [minor, patch]
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    groups:
+      actions-minor-and-patch:
+        update-types: [minor, patch]
