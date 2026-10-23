@@ -6,6 +6,11 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  # Weekly dependency audit (the audit job only: build and deploy skip scheduled
+  # runs). GitHub runs schedules from the default branch (main) and emails a
+  # failed scheduled run to whoever last changed this cron line.
+  schedule:
+    - cron: "0 13 * * 1"   # Mondays 13:00 UTC
 
 permissions:
   contents: read
@@ -17,13 +22,31 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
+  # npm audit on the production dependency tree, on every push and weekly.
+  audit:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          node-version: 24
+          node-version: 24.22.1
+          check-latest: true
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm audit --omit=dev --audit-level=high
+
+  build:
+    if: github.event_name != 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          # Exact, and check-latest so the runner's cached 24.x is not used (the
+          # 2026-10-09 deploy took 24.21.0 from the tool cache; 24.22.1 is the
+          # 2026-10-20 security release).
+          node-version: 24.22.1
+          check-latest: true
           cache: npm
       - run: npm ci --no-audit --no-fund
       - run: npm run build
@@ -35,6 +58,7 @@ jobs:
           path: dist
 
   deploy:
+    if: github.event_name != 'schedule'
     needs: build
     runs-on: ubuntu-latest
     environment:
